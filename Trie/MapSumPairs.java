@@ -12,12 +12,6 @@ class MapSum {
         }
 
 
-        // public MapSum(){
-        //     root = new TrieNode();
-        // }
-
-
-
     }
 
     public MapSum() {
