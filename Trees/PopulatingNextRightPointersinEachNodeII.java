@@ -38,6 +38,7 @@ class Solution {
 class Solution {
     public Node connect(Node root) {
         //dfs
+        //Uses Constant Space
         if(root == null){
             return null;
         }
