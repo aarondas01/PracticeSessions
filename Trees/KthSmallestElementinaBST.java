@@ -1,23 +1,72 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+    int count  = 0;
+    int result = -1;
+
+    public int kthSmallest(TreeNode root, int k) {
+
+        inorderTraversal(root,k);
+        return result;
+    }
+
+    private void inorderTraversal(TreeNode root, int k){
+        if(root == null){
+            return;
+        }
+
+        inorderTraversal(root.left,k);
+
+        if(++count == k){
+            result = root.val;
+            return;
+        }
+
+        inorderTraversal(root.right,k);
+
+    }
+}
+
+// TC: O(n)
+// SC: O(logn)
+
+
 class Solution {
     public int kthSmallest(TreeNode root, int k) {
         //iterative
 
         Stack<TreeNode> stack = new Stack<>();
 
-        int count = 0;
         TreeNode temp = root;
+        int count  = 0;
 
-        while(temp != null || !stack.isEmpty()){
+
+        while(temp!= null || !stack.isEmpty()){
+
             if(temp != null){
                 stack.push(temp);
                 temp = temp.left;
             }
             else{
-                TreeNode node = stack.pop();
+                TreeNode curr = stack.pop();
                 if(++count == k){
-                    return node.val;
+                    return curr.val;
                 }
-                temp = node.right;
+                temp = curr.right;
             }
         }
         return -1;
@@ -26,30 +75,3 @@ class Solution {
 
 // TC: O(n)
 // SC: O(n)
-
-
-class Solution {
-    int count = 0;
-    int res = -1;
-    public int kthSmallest(TreeNode root, int k) {
-
-        // recursive inorder
-        traversal(root,k);
-        return res;
-    }
-
-    private void traversal(TreeNode root, int k){
-        if(root == null){
-            return;
-        }
-        traversal(root.left,k);
-
-        if(++count == k){
-            res = root.val;
-        }
-        traversal(root.right,k);
-    }
-}
-
-// TC: O(n)
-// SCL O(logn)
