@@ -1,9 +1,11 @@
 class Solution {
     int res = 0;
     public int pathSum(TreeNode root, int targetSum) {
-        if(root == null){
+        if(root == null)
+        {
             return 0;
         }
+
         helper(root,targetSum);
         pathSum(root.left,targetSum);
         pathSum(root.right, targetSum);
@@ -17,10 +19,9 @@ class Solution {
         if(root.val == targetSum){
             res++;
         }
-        targetSum = targetSum-root.val;
+        targetSum = targetSum - root.val;
         helper(root.left,targetSum);
-        helper(root.right,targetSum);
-
+        helper(root.right, targetSum);
     }
 }
 
